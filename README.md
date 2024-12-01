@@ -98,23 +98,23 @@ Explicado los comandos basicos de nvim queda por comentar que estas configuracio
 
 - Lspconfig: Este plugin permite ver los *Warnig* y *Errores* directamente en el editor como hace vscode. Ademas de ello trae las siguintes funciones que se aplican en clases, funciones, variables y demas:
 
-    ```bash
+```bash
 ("n", "gd") -- Ir a definición
 ("n", "gh") -- Hover
 ("n", "gr") -- Referencias
 ("n", "<leader>rn") -- Renombrar
 ("n", "<leader>ca") -- Acción de código 
-    ```
+```
     
 - Git: Plugin que permite integrar funcionalidades de git:
 
-  ```bash
+```bash
 <Leader>go = Abre en el navegador el repositorio en el que estas trabjando.
 <Leader>gp = Abre el ulltimo pull request del archivo en el que lo ejecutas
 <Leader>gn = Abre el navegador directamente para que crees un pull request
 <Leader>gr = Te permite regresar tu codigo a versiones anteriores
 <Leader>gR = Te permite regresar tu archivo donde corriste el comando a versiones anteriores.
-    ```
+```
      
 ## Perzonalizacion
 ---
