@@ -88,7 +88,7 @@ mv Desktop/nvim/* C:\Users\<TuUsuario>\AppData\Local\nvim
 ## Comandos
 ---
 
-Para empezar a usar vim o nvim primero se deben conocer los conseptos y comandos para realizar las funciones mas basicas dentro del editor. Visita la documentacion oficial para conocer los detalles. *[Vim](https://www.vim.org/)* *[Comandos basicos](https://victorhck.gitlab.io/comandos_vim/)*
+Para empezar a usar vim o nvim primero se deben conocer los conceptos y comandos para realizar las funciones mas basicas dentro del editor. Visita la documentacion oficial para conocer los detalles. *[Vim](https://www.vim.org/)* *[Comandos basicos](https://victorhck.gitlab.io/comandos_vim/)*
 
 Explicado los comandos basicos de nvim queda por comentar que estas configuraciones integran plugins que ofrecen distintas funcionalidades extras y por lo consiguinete la mayoria cuentan con sus propios comandos los cuales se detallaran a continuacion:
 
