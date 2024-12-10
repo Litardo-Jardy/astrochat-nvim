@@ -11,7 +11,7 @@ return {
 
       -- Configuración de mason-lspconfig
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "ts_ls", "pyright" },  -- Servidores LSP que deseas instalar
+        ensure_installed = { "lua_ls", "ts_ls", "pyright", "html", "cssls" },  -- Servidores LSP que deseas instalar
       })
 
       -- Configuración de nvim-lspconfig para servidores específicos
