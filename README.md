@@ -85,6 +85,13 @@ mv Desktop/nvim/* C:\Users\<TuUsuario>\AppData\Local\nvim
 //Ten encuenta que para este ejemplo presupongo que el repositorio fue clonado dentro de Desktop, si lo clonaste en otro directorio debes colocar esa ruta en especifico. 
 ```
 
+Descargar eslint_d que es una version mas rapida de eslint, utilizaremos esta herramienta para el formateo y la deteccion de errores en el codigo:
+
+```bash
+-
+npm install -g eslint_d
+```
+
 ## Comandos
 ---
 

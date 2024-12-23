@@ -4,6 +4,7 @@ return {
     dependencies = {
       "williamboman/mason-lspconfig.nvim",   -- Conexión entre Mason y nvim-lspconfig
       "neovim/nvim-lspconfig",               -- Configuración base de LSP
+      "jose-elias-alvarez/null-ls.nvim",
     },
     config = function()
       -- Configuración inicial de Mason
@@ -11,7 +12,7 @@ return {
 
       -- Configuración de mason-lspconfig
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "ts_ls", "pyright", "html", "cssls" },  -- Servidores LSP que deseas instalar
+        ensure_installed = { "lua_ls", "ts_ls", "eslint", "pyright", "cssls" },  -- Servidores LSP que deseas instalar
       })
 
       -- Configuración de nvim-lspconfig para servidores específicos
@@ -50,6 +51,40 @@ return {
           vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
         end,
       })
+
+      -- Configuración para Css (cssls)
+      lspconfig.cssls.setup({
+        on_attach = function(client, bufnr)
+          local opts = { noremap = true, silent = true, buffer = bufnr }
+          vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+          vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+          vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+          vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+        end,
+      })
+
+      local null_ls = require("null-ls")
+
+      null_ls.setup({
+        sources = {
+          null_ls.builtins.formatting.eslint_d.with({
+              prefer_local = "node_modules/.bin",
+
+	  }),  -- Usamos eslint_d como formateador
+        },
+        on_attach = function(client, bufnr)
+          -- Formateo automático al guardar
+          if client.supports_method("textDocument/formatting") then
+            vim.api.nvim_create_autocmd("BufWritePre", {
+              buffer = bufnr,
+              callback = function()
+                vim.lsp.buf.format({ bufnr = bufnr })
+              end,
+            })
+          end
+        end,
+      })
+
     end,
   },
 }
