@@ -12,7 +12,7 @@ return {
 
       -- Configuración de mason-lspconfig
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "ts_ls", "eslint", "pyright", "cssls" },  -- Servidores LSP que deseas instalar
+        ensure_installed = { "lua_ls", "ts_ls", "eslint", "pyright", "cssls", "omnisharp" },  -- Servidores LSP que deseas instalar
       })
 
       -- Configuración de nvim-lspconfig para servidores específicos
@@ -62,6 +62,21 @@ return {
           vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
         end,
       })
+
+      -- Configuracion para c#
+     lspconfig.omnisharp.setup({
+      cmd = { "omnisharp" },  -- Comando para ejecutar OmniSharp
+      root_dir = lspconfig.util.root_pattern("*.csproj", "*.sln"),  -- Determina el directorio raíz
+      on_attach = function(client, bufnr)
+         local opts = { noremap = true, silent = true, buffer = bufnr }
+         -- Definir atajos de teclado útiles para C#
+         vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)  -- Ir a definición
+         vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)  -- Buscar referencias
+         vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)  -- Renombrar
+         vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)  -- Acciones de código
+      end,
+     })
+
 
       local null_ls = require("null-ls")
 

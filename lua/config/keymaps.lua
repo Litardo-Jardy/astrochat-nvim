@@ -38,3 +38,8 @@ local telescope_builtin = require("telescope.builtin")
 vim.keymap.set("n", "<leader>xw", function()
   telescope_builtin.diagnostics({ bufnr = 0 })  -- Solo busca en el buffer actual
 end, { desc = "Document Diagnostics" })
+
+-- Open search with telescope
+vim.api.nvim_set_keymap('n', '<leader>ff', '<cmd>Telescope find_files<cr>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fb', '<cmd>Telescope buffers<cr>', { noremap = true, silent = true })
