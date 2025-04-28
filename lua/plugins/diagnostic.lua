@@ -1,6 +1,6 @@
 return {
-  
-{
+
+  {
     "hrsh7th/nvim-cmp", -- Framework de autocompletado
     dependencies = {
       "hrsh7th/cmp-nvim-lsp", -- Fuente de autocompletado para LSP
@@ -11,6 +11,4 @@ return {
       "L3MON4D3/LuaSnip",     -- Framework de snippets
     },
   },
-
-     }
-
+ }

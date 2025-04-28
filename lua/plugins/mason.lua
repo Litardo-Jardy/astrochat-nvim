@@ -1,10 +1,14 @@
 return {
   {
-    "williamboman/mason.nvim",              -- Plugin principal de Mason
+    "williamboman/mason.nvim",              -- plugin principal de mason
     dependencies = {
-      "williamboman/mason-lspconfig.nvim",   -- Conexión entre Mason y nvim-lspconfig
-      "neovim/nvim-lspconfig",               -- Configuración base de LSP
-      "jose-elias-alvarez/null-ls.nvim",
+      "williamboman/mason-lspconfig.nvim",   -- conexión entre mason y nvim-lspconfig
+      "neovim/nvim-lspconfig",               -- configuración base de lsp
+      {
+        "nvimtools/none-ls.nvim",
+        name = "null-ls",
+        dependencies = { "nvim-lua/plenary.nvim" },
+      }
     },
     config = function()
       -- Configuración inicial de Mason
@@ -82,10 +86,9 @@ return {
 
       null_ls.setup({
         sources = {
-          null_ls.builtins.formatting.eslint_d.with({
+          null_ls.builtins.formatting.prettier.with({
               prefer_local = "node_modules/.bin",
-
-	  }),  -- Usamos eslint_d como formateador
+	  }),
         },
         on_attach = function(client, bufnr)
           -- Formateo automático al guardar

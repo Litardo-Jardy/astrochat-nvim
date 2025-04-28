@@ -5,7 +5,7 @@ return {
     name = "catppuccin",
     lazy = false, -- Load this plugin immediately
     opts = {
-      transparent_background = true, -- Enable transparent background
+      transparent_background = false, -- Enable transparent background
       flavour = "mocha", -- Set the flavor of the color scheme
     },
     integrations = {
@@ -117,7 +117,7 @@ return {
     "LazyVim/LazyVim",
     opts = {
       -- Set the default color scheme
-      colorscheme = "kanagawa-dragon",
+      colorscheme = "catppuccin",
     },
   },
 }
