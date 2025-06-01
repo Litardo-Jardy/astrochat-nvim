@@ -10,8 +10,23 @@ vim.o.signcolumn = "yes"
 local b = { noremap = true, silent = true, }
 vim.keymap.set('i', 'jj', '<Esc>', b)
 
-vim.keymap.set('i', '<c-s>', '<esc> | :w<cr>', b)
-vim.keymap.set('n', '<c-s>', '<esc> | :w<cr>', b)
+-- Guardado sin formatear automaticamente
+vim.keymap.set('i', '<C-s>', function()
+  vim.api.nvim_command('stopinsert')
+  vim.cmd('noautocmd w') 
+end, { noremap = true, silent = true })
+
+vim.keymap.set('n', '<C-s>', ':noautocmd w<CR>', { noremap = true, silent = true })
+
+-- Formateo de forma manual
+vim.keymap.set('n', '<Leader>f', function()
+  vim.lsp.buf.format({
+    async = true,
+    filter = function(client)
+      return client.name == "null-ls"
+    end,
+  })
+end, { noremap = true, silent = true, desc = "Format buffer with prettier" })
 
 vim.keymap.set('n', 'ñ', '<cr>', b)
 

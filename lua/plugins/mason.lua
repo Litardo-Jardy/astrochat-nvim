@@ -82,26 +82,24 @@ return {
      })
 
 
-      local null_ls = require("null-ls")
+     local null_ls = require("null-ls")
 
-      null_ls.setup({
-        sources = {
-          null_ls.builtins.formatting.prettier.with({
-              prefer_local = "node_modules/.bin",
-	  }),
-        },
-        on_attach = function(client, bufnr)
-          -- Formateo automático al guardar
-          if client.supports_method("textDocument/formatting") then
-            vim.api.nvim_create_autocmd("BufWritePre", {
-              buffer = bufnr,
-              callback = function()
-                vim.lsp.buf.format({ bufnr = bufnr })
-              end,
-            })
-          end
-        end,
-      })
+     null_ls.setup({
+       sources = {
+         null_ls.builtins.formatting.prettier.with({
+       prefer_local = "node_modules/.bin",
+     }),
+    },
+      on_attach = function(client, bufnr)
+        -- No formateo automático al guardar
+      end,
+    })
+    vim.api.nvim_set_keymap(
+     "n",
+     "<leader>f",
+     "<cmd>lua vim.lsp.buf.format({ async = true })<CR>",
+    { noremap = true, silent = true })
+
 
     end,
   },

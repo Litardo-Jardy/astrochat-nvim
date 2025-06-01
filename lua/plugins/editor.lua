@@ -94,27 +94,61 @@ return {
 
     end,
   },
-  
+
+----Codeium dependencies
+
 {
-  -- Plugin: nvim-tree.lua
-  -- URL: https://github.com/nvim-tree/nvim-tree.lua
+  "Exafunction/codeium.nvim",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+  },
+  event = "BufEnter",
+  config = function()
+    require("codeium").setup({
+      enable = true,
+      -- Mapea teclas si quieres:
+      keymap = {
+        accept = "<C-a>",
+        next = "<C-j>",
+        prev = "<C-k>",
+        clear = "<C-x>",
+      },
+    })
+  end,
+},
+{
   "nvim-tree/nvim-tree.lua",
+  dependencies = {
+    "nvim-tree/nvim-web-devicons",
+  },
   opts = {
     view = {
-      side = "left", -- Posicionar el explorador a la izquierda
-      width = 30, -- Ancho del explorador
+      side = "left",
+      width = 30,
     },
-  },
-  dependencies = {
-    "nvim-tree/nvim-web-devicons", -- Agregar íconos al explorador
+    on_attach = function(bufnr)
+      local api = require("nvim-tree.api")
+
+      local function opts(desc)
+        return {
+          desc = "nvim-tree: " .. desc,
+          buffer = bufnr,
+          noremap = true,
+          silent = true,
+          nowait = true,
+        }
+      end
+
+      -- Mapea "l" para abrir archivos o expandir
+      vim.keymap.set("n", "l", api.node.open.edit, opts("Open"))
+      -- Opcional: "h" para cerrar carpetas
+      vim.keymap.set("n", "h", api.node.navigate.parent_close, opts("Close Directory"))
+    end,
   },
   config = function(_, opts)
     require("nvim-tree").setup(opts)
-
-    -- Atajo para abrir/cerrar el explorador
     vim.keymap.set("n", "<Leader>e", ":NvimTreeToggle<CR>", { noremap = true, silent = true, desc = "Toggle Nvim Tree" })
   end,
-},  
-
+}
 }
 
