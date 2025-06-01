@@ -97,25 +97,30 @@ return {
 
 ----Codeium dependencies
 
+
 {
   "Exafunction/codeium.nvim",
   dependencies = {
     "nvim-lua/plenary.nvim",
+    "hrsh7th/nvim-cmp", -- Si usas cmp
   },
-  event = "BufEnter",
   config = function()
     require("codeium").setup({
-      enable = true,
-      -- Mapea teclas si quieres:
-      keymap = {
-        accept = "<C-a>",
-        next = "<C-j>",
-        prev = "<C-k>",
-        clear = "<C-x>",
+      enable_cmp_source = false,
+      virtual_text = {
+        enabled = true,
+        idle_delay = 75,
+        key_bindings = {
+          accept = "<c-l>",
+          next = "<c-j>",
+          prev = "<c-k>",
+        },
       },
     })
   end,
+  event = "InsertEnter",
 },
+
 {
   "nvim-tree/nvim-tree.lua",
   dependencies = {

@@ -61,5 +61,5 @@ vim.api.nvim_set_keymap('n', '<leader>fb', '<cmd>Telescope buffers<cr>', { norem
 
 -- Codemiun 
 vim.keymap.set("i", "<C-a>", function()
-  return vim.fn["codeium#Accept"]()
+  return require("codeium").accept()
 end, { expr = true, silent = true })
