@@ -111,7 +111,7 @@ return {
         enabled = true,
         idle_delay = 75,
         key_bindings = {
-          accept = "<c-l>",
+          accept = "<c-a>",
           next = "<c-j>",
           prev = "<c-k>",
         },
@@ -145,9 +145,20 @@ return {
       end
 
       -- Mapea "l" para abrir archivos o expandir
-      vim.keymap.set("n", "l", api.node.open.edit, opts("Open"))
-      -- Opcional: "h" para cerrar carpetas
-      vim.keymap.set("n", "h", api.node.navigate.parent_close, opts("Close Directory"))
+     vim.keymap.set("n", "a", api.fs.create, opts("Create"))
+     vim.keymap.set("n", "d", api.fs.remove, opts("Delete"))
+     vim.keymap.set("n", "r", api.fs.rename, opts("Rename"))
+     vim.keymap.set("n", "x", api.fs.cut, opts("Cut"))
+     vim.keymap.set("n", "c", api.fs.copy.node, opts("Copy"))
+     vim.keymap.set("n", "p", api.fs.paste, opts("Paste"))
+
+     -- Navegación
+     vim.keymap.set("n", "l", api.node.open.edit, opts("Open File or Folder"))
+     vim.keymap.set("n", "h", api.node.navigate.parent_close, opts("Close Folder"))
+     vim.keymap.set("n", "P", api.node.navigate.parent, opts("Go to Parent"))
+
+     -- Otros
+     vim.keymap.set("n", "R", api.tree.reload, opts("Refresh"))
     end,
   },
   config = function(_, opts)
